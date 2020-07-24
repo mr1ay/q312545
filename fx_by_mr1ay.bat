@@ -55,27 +55,27 @@ if exist ver.txt  del ver.txt
 			goto :anasayfa
 
 		:nn
-FC ver.txt v1.mr1ay >nul 
-if %errorlevel% == 0 (
+
+set /p a=<v1.mr1ay
+set /p b=<ver.txt
+echo eski: %a% 
+echo yeni: %b% 
+if %a%==%b% goto m
 echo guncelleme surumu farkli 
 timeout /t 2 >nul
 goto :mm
-)
+goto Menu
 
-if %errorlevel% == 1 (
-echo guncelleme surumu ayni
-timeout /t 2 >nul
-goto :m
-)
+
+
 
 		:m
+			echo guncelleme surumu ayni
 			batbox /g 18 10 /c 0x0e /d "guncelsiniz"
 			timeout /t 3 >nul
 			goto :anasayfa
 
 		:mm	
-			echo. %o%
-			echo. %e%
 			batbox /g 18 10 /c 0x0e /d "yeni guncelleme bulundu"
 			batbox /g 42 10 /c 0x0d /d "< indir >"
 			call batboxmouse
