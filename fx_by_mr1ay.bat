@@ -1,11 +1,14 @@
 		@echo off
+
 ::		Set "Path=%Path%;%CD%;%CD%\core1;%CD%\core2;"
 		mode 73,20
 		color f
 		call consolelocation.bat
 		title fx by mr1ay
 	:Anasayfa
-		del error.mr1ay
+if exist yap.bat  del yap.bat
+if exist error.mr1ay  del error.mr1ay
+if exist ver.txt  del ver.txt
 		call :baslik
 		call :version
 		call mbat 5 3 0b "Merhaba "
@@ -52,18 +55,27 @@
 			goto :anasayfa
 
 		:nn
-			set /p oldversion=<v1.mr1ay
-			set /p endversion=<ver.txt
-			if "%oldversion%"=="%endversion%" goto :m
-			if not "%oldversion%"=="%endversion%" goto :mm
-			goto :anasayfa
+FC ver.txt v1.mr1ay >nul 
+if %errorlevel% == 0 (
+echo guncelleme surumu farkli 
+timeout /t 2 >nul
+goto :mm
+)
+
+if %errorlevel% == 1 (
+echo guncelleme surumu ayni
+timeout /t 2 >nul
+goto :m
+)
 
 		:m
 			batbox /g 18 10 /c 0x0e /d "guncelsiniz"
-			call batboxmouse
+			timeout /t 3 >nul
 			goto :anasayfa
 
-		:mm
+		:mm	
+			echo. %o%
+			echo. %e%
 			batbox /g 18 10 /c 0x0e /d "yeni guncelleme bulundu"
 			batbox /g 42 10 /c 0x0d /d "< indir >"
 			call batboxmouse
@@ -73,14 +85,20 @@
 
 		:indir
 			start guncelleme.bat 2
-			timeout /t 5
-			goto anasayfa
+			cls 
+			echo program guncellendi lutfen bekleyiniz
+			timeout /t 10
+			if exist error.mr1ay goto :anasayfa
+			if not exist error.mr1ay goto :EE
+
+			:EE
+				start fx_by_mr1ay
+				exit
+
 
 
 	:version
-		< v1.mr1ay (
-		set /p v1=
-		)
+		set /p v1=<v1.mr1ay
 		goto :eof
 
 
