@@ -6,7 +6,7 @@ timeout /t 2
 ::del hf.bat
 
 set aa1=%cd%
-move kaynak\*.* %aa1%
+move kaynak\fx_by_mr1ay.bat %aa1%
 
 set /p a=<ver.txt
 echo.%a% >v1.mr1ay 
