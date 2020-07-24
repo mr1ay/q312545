@@ -1,6 +1,7 @@
 @echo off
-timeout /t 5
 call consolelocation
+timeout /t 2
+
 ::del geometri.bat
 ::del hf.bat
 
