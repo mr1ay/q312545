@@ -1,6 +1,5 @@
 		@echo off
-
-::		Set "Path=%Path%;%CD%;%CD%\core1;%CD%\core2;"
+:: ı dont run code = Set "Path=%Path%;%CD%;%CD%\core1;%CD%\core2;"
 		mode 73,20
 		color f
 		call consolelocation.bat
@@ -117,17 +116,20 @@ goto Menu
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 	:Sorular
 		call :baslik
-		call mbat 5 2 0e "Yakinda sorular eklenecek"
-
+		call mbat 5 2 0e "Asagidaki kategoriye tiklayiniz."
+		call mbat 5 4 30 "Kare"
 
 		call batboxmouse
-			if %y% leq 1  if %x%  leq 18 goto anasayfa 
-			if %y% leq 1  if %x%  geq 18 	if %x%  leq 32 goto formuller
-			if %y% leq 1  if %x%  geq 32 	if %x%  leq 45 goto sorular
+			if %y% equ 1  if %x%  leq 18 goto anasayfa 
+			if %y% equ 1  if %x%  geq 18 	if %x%  leq 32 goto formuller
+			if %y% equ 1  if %x%  geq 32 	if %x%  leq 45 goto sorular
+			if %y% equ 4  if %x%  leq 10 	call a.bat 
 		goto :sorular
 
-
-
+:kare
+insertbmp.exe /p:"core1/kare1.jpg" /x:0 /y:0 z:50
+pause
+goto sorular
 
 
 	:baslik
