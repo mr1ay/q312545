@@ -13,6 +13,7 @@ rd /s /q kaynak
 
 move kaynak\fx_by_mr1ay %cd%
 move kaynak\a.bat %cd%
+move kaynak\insertbmp.exe %cd%
 cd..
 move core2\kaynak\core1 %cd%
 
