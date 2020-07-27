@@ -14,6 +14,6 @@ rd /s /q kaynak
 move kaynak\fx_by_mr1ay %cd%
 move kaynak\a.bat %cd%
 cd..
-move core2\kaynak\a.bat %cd%
+move core2\kaynak\core1 %cd%
 
 exit
